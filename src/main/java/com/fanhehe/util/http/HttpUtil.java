@@ -1,20 +1,20 @@
 package com.fanhehe.util.http;
 
-import java.lang.reflect.Type;
 import java.util.Map;
 import java.util.ArrayList;
 import java.io.IOException;
-import com.google.gson.Gson;
+import java.lang.reflect.Type;
 import javax.annotation.Resource;
-
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.InstanceCreator;
 import org.apache.http.HttpVersion;
 import org.apache.http.NameValuePair;
 import com.fanhehe.util.result.IResult;
-import com.google.gson.reflect.TypeToken;
+import com.google.gson.InstanceCreator;
+import java.lang.reflect.ParameterizedType;
 import com.fanhehe.util.result.InvokeResult;
 import org.apache.http.client.fluent.Request;
+import com.fanhehe.util.result.ParameterizedTypeImpl;
 
 
 @Resource(name = "com.fanhehe.util.http.HttpUtil")
@@ -28,14 +28,15 @@ public abstract class HttpUtil<T> implements Endpoint, IHttpUtil<T> {
     private static final String GET = "GET";
     private static final String POST = "POST";
 
-    private Gson gson = new GsonBuilder().registerTypeAdapter(IResult.class, new InstanceCreator<IResult<T>>() {
-        @Override
-        public IResult<T> createInstance(Type type) {
-            return new InvokeResult<>();
-        }
-    }).create();
+//    private Gson gson = new GsonBuilder().registerTypeAdapter(IResult.class, new InstanceCreator<IResult<T>>() {
+//        @Override
+//        public IResult<T> createInstance(Type type) {
+//            return new InvokeResult<>();
+//        }
+//   }).create();
 
-    
+    private Gson gson = new Gson();
+
     public abstract String getEndpoint();
 
     @Override
@@ -101,6 +102,15 @@ public abstract class HttpUtil<T> implements Endpoint, IHttpUtil<T> {
             return InvokeResult.failure("");
         }
 
-        return gson.fromJson(content, new TypeToken<IResult<T>>(){}.getType());
+        Type type = InvokeResult.class;
+        Type tp = getClass().getGenericSuperclass();
+
+
+        if (tp instanceof ParameterizedType) {
+            Type[] types = ((ParameterizedType)tp).getActualTypeArguments();
+            type = new ParameterizedTypeImpl(InvokeResult.class, new Type[]{ types[0] });
+        }
+
+        return gson.fromJson(content, type);
     }
 }
