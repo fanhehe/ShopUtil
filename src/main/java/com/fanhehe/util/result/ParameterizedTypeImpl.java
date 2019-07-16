@@ -3,7 +3,6 @@ package com.fanhehe.util.result;
 import java.lang.reflect.Type;
 import java.lang.reflect.ParameterizedType;
 
-
 /**
  * Created by fanhehe on 16/07/2019.
  * reference https://juejin.im/entry/5b5e6bb7e51d45195312803a

@@ -21,7 +21,17 @@ public interface IResult<T> extends Serializable {
      * @param data 设置负载信息
      */
     void setData(T data);
+
+    /**
+     * 设置code
+     * @param code 代码
+     */
     void setCode(int code);
+
+    /**
+     * 设置调用message
+     * @param message 调用message
+     */
     void setMessage(String message);
 
     default int getCode() {

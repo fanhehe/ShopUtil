@@ -32,15 +32,12 @@ public class ApplicationTest {
     	    return;
         }
 
-    	Assert.assertEquals(result.isSuccess(), true);
-
     	if (result.getData() != null) {
     		System.out.println(result.getData().toString());
     	} else {
     		System.out.println("=============================");
     	}
     }
-
 }
 
 class Code {
@@ -149,6 +146,6 @@ class ApiService extends HttpUtil<Code> {
         params.put("email", email);
         params.put("orderId", orderId);
 
-        return this.get("/api/message/captcha/email/send", params);
+        return this.post("/api/message/captcha/email/send", params);
     }
 }

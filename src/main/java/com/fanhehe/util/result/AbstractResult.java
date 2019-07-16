@@ -1,8 +1,10 @@
 package com.fanhehe.util.result;
 
-import javax.annotation.Resource;
 
-@Resource(name = "com.fanhehe.util.http.AbstractResult")
+/**
+ * 抽象方法，实现最基本的封装
+ * @param <T>
+ */
 public abstract class AbstractResult<T> implements IResult<T> {
 
     private int code = 0;
