@@ -1,10 +1,14 @@
 package com.fanhehe.util.http;
 
+import java.lang.reflect.Type;
 import java.util.Map;
 import java.util.ArrayList;
 import java.io.IOException;
 import com.google.gson.Gson;
 import javax.annotation.Resource;
+
+import com.google.gson.GsonBuilder;
+import com.google.gson.InstanceCreator;
 import org.apache.http.HttpVersion;
 import org.apache.http.NameValuePair;
 import com.fanhehe.util.result.IResult;
@@ -16,17 +20,22 @@ import org.apache.http.client.fluent.Request;
 @Resource(name = "com.fanhehe.util.http.HttpUtil")
 public abstract class HttpUtil<T> implements Endpoint, IHttpUtil<T> {
 
+    private int socketTimeout = 2000;
+    private int connectTimeout = 2000;
+    private String scheme = "http://";
+    private HttpVersion httpVersion = HttpVersion.HTTP_1_1;
+
     private static final String GET = "GET";
     private static final String POST = "POST";
 
-    private static final Gson gson = new Gson();
+    private Gson gson = new GsonBuilder().registerTypeAdapter(IResult.class, new InstanceCreator<IResult<T>>() {
+        @Override
+        public IResult<T> createInstance(Type type) {
+            return new InvokeResult<>();
+        }
+    }).create();
 
-    private static final String scheme = "http://";
-    private static final int socketTimeout = 2000;
-    private static final int connectTimeout = 2000;
-
-    private HttpVersion httpVersion = HttpVersion.HTTP_1_1;
-
+    
     public abstract String getEndpoint();
 
     @Override
