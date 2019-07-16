@@ -33,7 +33,7 @@
 <dependency>
     <groupId>com.github.fanhehe</groupId>
     <artifactId>ShopUtil</artifactId>
-    <version>770eaee49b</version>
+    <version>[1.0,)</version>
 </dependency>
 
 ```
