@@ -47,7 +47,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.fanhehe:ShopUtil:770eaee49b'
+    implementation 'com.github.fanhehe:ShopUtil:[1.0,)'
 }
 
 ```
