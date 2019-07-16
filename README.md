@@ -1,4 +1,4 @@
-@ShopUtil
+# ShopUtil
 
 [![](https://jitpack.io/v/fanhehe/ShopUtil.svg)](https://jitpack.io/#fanhehe/ShopUtil)
 
@@ -24,30 +24,30 @@
 ```xml
 
 <repositories>
-	<repository>
-		<id>jitpack.io</id>
-		<url>https://jitpack.io</url>
-	</repository>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
 </repositories>
 
 <dependency>
-	<groupId>com.github.fanhehe</groupId>
-	<artifactId>ShopUtil</artifactId>
-	<version>51fcd62be4</version>
+    <groupId>com.github.fanhehe</groupId>
+    <artifactId>ShopUtil</artifactId>
+    <version>770eaee49b</version>
 </dependency>
 
 ```
 
-### gradle 
+### gradle
 
 ```gradle
 
 repositories {
-	maven { url 'https://jitpack.io' }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
-    implementation 'com.github.fanhehe:ShopUtil:51fcd62be4'
+    implementation 'com.github.fanhehe:ShopUtil:770eaee49b'
 }
 
 ```
@@ -58,9 +58,9 @@ dependencies {
 
 ```json
 {
-	"code": 0,
-	"message": "",
-	"data": null
+    "code": 0,
+    "message": "",
+    "data": null
 }
 ```
 
@@ -76,41 +76,41 @@ import com.fanhehe.util.result.InvokeResult;
 
 // Model: 可以自行补充 getter/setter
 class Model {
-	private int id;
-	private String name;
-	private String pasword;
+    private int id;
+    private String name;
+    private String pasword;
 }
 
 // Service
 interface IService {
-	IResult<Model> getVisit(Model model);
-	IResult<Model> postVisit(Model model);
+    IResult<Model> getVisit(Model model);
+    IResult<Model> postVisit(Model model);
 }
 
 class Service extends HttpUtil<Model> implements IService {
 
-	@Override
-	public String getEndpoint() {
-		return "127.0.0.1:8080"; // 指定IP + PORT
-	}
+    @Override
+    public String getEndpoint() {
+        return "127.0.0.1:8080"; // 指定IP + PORT
+    }
 
-	@Override
-	public IResult<Model> getVisit(Model model) {
+    @Override
+    public IResult<Model> getVisit(Model model) {
 
-		Map<String, String> params = new HashMap<>();
+        Map<String, String> params = new HashMap<>();
 
         params.put("id", model.getId());
         params.put("name", model.getName());
         params.put("password", model.getPassword());
 
         return this.get("/api/message/captcha/email/send", params);
-	}
+    }
 
-	@Override
-	public IResult<Model> postVisit(Model model) {
+    @Override
+    public IResult<Model> postVisit(Model model) {
 
-		Map<String, String> params = new HashMap<>();
-		Map<String, String> headers = new HashMap<>();
+        Map<String, String> params = new HashMap<>();
+        Map<String, String> headers = new HashMap<>();
 
         params.put("id", model.getId());
         params.put("name", model.getName());
@@ -119,26 +119,26 @@ class Service extends HttpUtil<Model> implements IService {
         headers.put("Accept", "application/json");
 
         return this.get("/api/message/captcha/email/send", params, headers);
-	}
+    }
 }
 
 
 class Main {
-	public static void invoke() {
-		IService service = new Service();
+    public static void invoke() {
+        IService service = new Service();
 
-		IResult<Model> result = service.getVisit(new Model());
+        IResult<Model> result = service.getVisit(new Model());
 
-		if (result.isSuccess()) {
-			System.out.println("调用成功: " + result.getMessage());
-		}
+        if (result.isSuccess()) {
+            System.out.println("调用成功: " + result.getMessage());
+        }
 
-		// or 
+        // or
 
-		if (result.isFailure()) {
-			System.out.println("调用失败:" + result.getMessage());
-		}
-	}
+        if (result.isFailure()) {
+            System.out.println("调用失败:" + result.getMessage());
+        }
+    }
 }
 
 ```
@@ -153,5 +153,6 @@ mvn test
 
 ```
 ### 1.0.0
+
 + 初始化
 ```
