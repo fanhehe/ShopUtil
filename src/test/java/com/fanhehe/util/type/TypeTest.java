@@ -16,4 +16,3 @@ public class TypeTest {
         Assert.assertEquals(true, Type.isEmail("13889441200@163.com"));
     }
 }
-

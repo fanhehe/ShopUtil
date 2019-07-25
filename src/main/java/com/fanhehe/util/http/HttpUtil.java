@@ -17,8 +17,8 @@ import com.fanhehe.util.result.ParameterizedTypeImpl;
 @Resource(name = "com.fanhehe.util.http.HttpUtil")
 public abstract class HttpUtil<T> implements Endpoint, IHttpUtil<T> {
 
-    private int socketTimeout = 2000;
-    private int connectTimeout = 2000;
+    private int socketTimeout = 60000;
+    private int connectTimeout = 60000;
     private String scheme = "http://";
     private HttpVersion httpVersion = HttpVersion.HTTP_1_1;
 
