@@ -8,7 +8,6 @@ import java.util.HashMap;
 import com.fanhehe.util.http.HttpUtil;
 import com.fanhehe.util.result.IResult;
 
-
 public class ApplicationTest {
 
     @Test
