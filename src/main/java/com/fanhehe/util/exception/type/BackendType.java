@@ -13,7 +13,7 @@ public enum BackendType {
         return code;
     }
 
-    public String message() {
+    public String getMessage() {
         return message;
     }
 

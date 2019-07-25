@@ -26,7 +26,7 @@ public enum MessageType {
         return code;
     }
 
-    public String message() {
+    public String getMessage() {
         return message;
     }
 
