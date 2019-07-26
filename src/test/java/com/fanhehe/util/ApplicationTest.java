@@ -1,5 +1,7 @@
 package com.fanhehe.util;
 
+import com.fanhehe.util.constant.response.MessageResponse;
+import com.fanhehe.util.result.InvokeResult;
 import org.junit.Test;
 import org.junit.Assert;
 
@@ -9,6 +11,11 @@ import com.fanhehe.util.http.HttpUtil;
 import com.fanhehe.util.result.IResult;
 
 public class ApplicationTest {
+
+    @Test
+    public void res() {
+        Assert.assertEquals(InvokeResult.failure(MessageResponse.SEND_MESSAGE_FAILED).getCode(), 5004);
+    }
 
     @Test
     public void evaluatesExpression() {
