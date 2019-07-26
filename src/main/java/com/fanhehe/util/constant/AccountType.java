@@ -1,4 +1,4 @@
-package com.fanhehe.util.constant.response;
+package com.fanhehe.util.constant;
 
 import com.fanhehe.util.type.Type;
 
