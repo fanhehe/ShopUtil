@@ -1,5 +1,7 @@
 package com.fanhehe.util.exception;
 
+import com.fanhehe.util.constant.response.IBaseResponse;
+
 // 无上报必要
 // 异常信息用户可见
 public class BaseException extends RuntimeException {
@@ -29,6 +31,10 @@ public class BaseException extends RuntimeException {
 
     BaseException() {
         super();
+    }
+
+    BaseException(IBaseResponse type) {
+        this(type.getCode(), type.getMessage());
     }
 
     BaseException(int code, String message) {

@@ -1,5 +1,5 @@
 package com.fanhehe.util.exception.protocol;
 
-public interface ReplaceMessageProtocol {
+public interface MessageProtocol {
     void replaceMessage(String newMessage);
 }
