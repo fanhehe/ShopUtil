@@ -118,7 +118,7 @@ class Service extends HttpUtil<Model> implements IService {
 
         headers.put("Accept", "application/json");
 
-        return this.get("/api/message/captcha/email/send", params, headers);
+        return this.post("/api/message/captcha/email/send", params, headers);
     }
 }
 
